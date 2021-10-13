@@ -7,10 +7,12 @@ public class TestSpring {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml"
         );
-        Music music = context.getBean("musicBean", Music.class);
 
-        MusicPlayer musicPlayer = new MusicPlayer(music);
-
+        // После добавления бина в XML можем заменить:
+        // Music music = context.getBean("musicBean", Music.class);
+        // MusicPlayer musicPlayer = new MusicPlayer(music);
+        // на Dependency Injection (DI):
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
         musicPlayer.playMusic();
 
         context.close();
